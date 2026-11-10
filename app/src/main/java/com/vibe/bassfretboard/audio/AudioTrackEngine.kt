@@ -139,7 +139,12 @@ class AudioTrackEngine(
                 val clipped = tanh(mix[i])
                 pcm[i] = (clipped * Short.MAX_VALUE).toInt().toShort()
             }
-            track.write(pcm, 0, blockFrames)
+            var written = 0
+            while (written < blockFrames) {
+                val n = track.write(pcm, written, blockFrames - written)
+                if (n <= 0) break
+                written += n
+            }
         }
     }
 

@@ -14,10 +14,11 @@ left-handed mode, and note-name labels.
 ## Quick start
 
 - JDK 17, Android Studio (Ladybug or newer), Android SDK with platform 35.
-- If `gradle/wrapper/gradle-wrapper.jar` is missing, run
-  `gradle wrapper --gradle-version 8.11.1` once on a machine with Gradle installed.
+- `gradle/wrapper/gradle-wrapper.jar` is vendored, so `./gradlew` works directly.
 - Build: `./gradlew assembleDebug`
 - Unit tests (pure JVM, no emulator needed): `./gradlew testDebugUnitTest`
+- Instrumented Compose UI test (needs an emulator/device):
+  `./gradlew connectedDebugAndroidTest`
 - Run on device/emulator from Android Studio. Audio latency is best judged on a real
   device.
 
@@ -66,6 +67,7 @@ app/src/test/...                JUnit4 tests for model/ and KarplusStrongVoice
 
 - `./gradlew testDebugUnitTest` — covers fret math, note math, pointer mapping, and the
   KS voice (finite output, decay, pitch accuracy, low-note buffer fit).
+- `./gradlew connectedDebugAndroidTest` — Compose UI smoke test (`FretboardUiTest`).
 - The UI/audio path needs a device or emulator; add instrumented tests when touching
   `AudioTrackEngine` or touch handling.
 

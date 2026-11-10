@@ -42,7 +42,10 @@ audio: KarplusStrongVoice (vendored Apache-2.0) → AudioTrackEngine (voice pool
 ## Milestones
 
 - [x] **M1** — Scaffold, vendored KS voice, AudioTrack engine, fretboard canvas, tap→note mapping, unit tests.
-- [ ] **M2** — Verify on device: latency, multi-touch chords, hold-to-ring, release mute, vibration visuals.
+- [~] **M2** — Code-level pass done (pointer-import fix, full AudioTrack writes, wrapper jar vendored,
+  instrumented UI test added, core re-verified on JVM: 29/29 checks). On-device verification
+  (latency, multi-touch chords, hold-to-ring, release mute, vibration visuals) still pending —
+  needs a phone/emulator.
 - [ ] **M3** — Settings polish (tunings incl. 5-string, fret count 12–24, vertical, left-handed, note names); optional CC0 sample pack.
 - [ ] **M4** — Perf pass, Play Store prep (signing, icons, privacy policy).
 
@@ -62,6 +65,10 @@ audio: KarplusStrongVoice (vendored Apache-2.0) → AudioTrackEngine (voice pool
 - **D5:** v1 fretboard shows 12–24 frets fit-to-screen (no pan/zoom); pinch-zoom/pan is
   a later milestone.
 - **D6:** mono 44.1 kHz 16-bit PCM output, max 8 voices, tanh soft-clip on the mix bus.
+- **D7:** `gradle-wrapper.jar` vendored from the `gradle/gradle` repo (tag v8.11.1) so
+  `./gradlew` works without a local Gradle install.
+- **D8:** `activity-compose` dependency added (required by `setContent`); instrumented
+  Compose test added under `app/src/androidTest`.
 
 ## Open questions
 
